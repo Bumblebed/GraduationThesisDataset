@@ -1,6 +1,3 @@
-import os
-os.chdir(r"D:\小论文&毕业论文\职业可替代风险")
-
 import re
 from PyPDF2 import PdfReader
 import pandas as pd

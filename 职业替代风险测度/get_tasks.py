@@ -20,7 +20,7 @@ lst=list(set(lst))
 lst.remove('Related occupations')
 len(lst)
 
-all_jobs=pd.read_excel(r"D:\小论文&毕业论文\职业可替代风险\All_Job_Families.xlsx")
+all_jobs=pd.read_excel("All_Job_Families.xlsx")
 my_dict={}
 for i in all_jobs["Code"]:
     url=f"https://www.onetonline.org/link/summary/{i}"
@@ -45,12 +45,11 @@ for i in all_jobs["Code"]:
 
 my_dict_copy=my_dict
 df1=pd.DataFrame({'code':list(my_dict_copy.keys()),'tasks':list(my_dict_copy.values())})
-df1.to_csv(r"D:\小论文&毕业论文\职业可替代风险\tasks.csv")
+df1.to_csv(r"tasks.csv")
 
 #request the abilities
 import numpy as np
-skills=pd.read_excel(r"C:\Users\Bumbl\Downloads\Skills.xlsx")
-folder_path = r"D:\小论文&毕业论文\职业可替代风险\skills"
+skills=pd.read_excel("Skills.xlsx")
 
 my_dict={}
 for i in np.unique(skills["Element ID"]).tolist():
@@ -62,7 +61,7 @@ for i in np.unique(skills["Element ID"]).tolist():
         excel_url = url + link
         excel_response = requests.get(excel_url)
         file_name = excel_url.split("/")[-1].replace('?fmt=xlsx','')
-        with open(folder_path + "\\"+file_name, "wb") as f:
+        with open(file_name, "wb") as f:
             f.write(excel_response.content)
         
         print(f"{i} ready!")
@@ -71,5 +70,5 @@ for i in np.unique(skills["Element ID"]).tolist():
 
 my_dict_copy=my_dict
 df1=pd.DataFrame({'code':list(my_dict_copy.keys()),'tasks':list(my_dict_copy.values())})
-df1.to_csv(r"D:\小论文&毕业论文\职业可替代风险\tasks.csv")
+df1.to_csv("tasks.csv")
 
